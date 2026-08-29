@@ -11,9 +11,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface HomeScreenProps {
   onReplaySplash: () => void;
+  onOpenRecognition: (sampleId?: string) => void;
+  onOpenDictionary: () => void;
 }
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({ onReplaySplash }) => {
+export const HomeScreen: React.FC<HomeScreenProps> = ({
+  onReplaySplash,
+  onOpenRecognition,
+  onOpenDictionary,
+}) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -52,83 +58,137 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onReplaySplash }) => {
           { paddingBottom: Math.max(insets.bottom + 20, 30) },
         ]}
       >
-        {/* Welcome Banner */}
+        {/* Welcome / Active Model Hero Card */}
         <View style={styles.heroCard}>
-          <View style={styles.heroBadge}>
-            <Text style={styles.heroBadgeText}>🇱🇰 SSL Model v2.4 Active</Text>
+          <View style={styles.heroBadgeRow}>
+            <View style={styles.heroBadge}>
+              <Text style={styles.heroBadgeText}>⚡ best_model_int8.tflite</Text>
+            </View>
+            <View style={styles.heroBadgeSecondary}>
+              <Text style={styles.heroBadgeSecondaryText}>🎯 90.94% Acc</Text>
+            </View>
           </View>
+
           <Text style={styles.heroTitle}>Break the Silence, Connect Sri Lanka</Text>
           <Text style={styles.heroDescription}>
-            Real-time two-way translation between Sri Lankan Sign Language (SSL),
-            Sinhala.
+            Real-time on-device gesture recognition powered by quantized EfficientNet-B0
+            across 111 Sri Lankan Sign Language classes.
           </Text>
+
+          <TouchableOpacity
+            style={styles.heroCta}
+            onPress={() => onOpenRecognition()}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.heroCtaText}>📸 Start Live AI Recognition</Text>
+          </TouchableOpacity>
         </View>
 
         {/* Feature Grid */}
-        <Text style={styles.sectionTitle}>Key Features</Text>
+        <Text style={styles.sectionTitle}>Features & Modules</Text>
 
         <View style={styles.featuresGrid}>
-          {/* Card 1 */}
-          <TouchableOpacity style={styles.featureCard} activeOpacity={0.8}>
-            <View style={[styles.featureIconBox, { backgroundColor: 'rgba(0, 201, 167, 0.15)' }]}>
+          {/* Card 1: Sign to Speech (Recognition) */}
+          <TouchableOpacity
+            style={styles.featureCard}
+            onPress={() => onOpenRecognition()}
+            activeOpacity={0.8}
+          >
+            <View
+              style={[
+                styles.featureIconBox,
+                { backgroundColor: 'rgba(0, 201, 167, 0.15)' },
+              ]}
+            >
               <Text style={styles.featureIcon}>📷</Text>
             </View>
             <Text style={styles.featureTitle}>Sign to Speech</Text>
             <Text style={styles.featureDesc}>
-              Real-time camera gesture recognition to voice
+              Real-time camera & gesture recognition with TFLite
             </Text>
-          </TouchableOpacity>
-
-          {/* Card 2 */}
-          <TouchableOpacity style={styles.featureCard} activeOpacity={0.8}>
-            <View style={[styles.featureIconBox, { backgroundColor: 'rgba(72, 202, 228, 0.15)' }]}>
-              <Text style={styles.featureIcon}>🎙️</Text>
+            <View style={styles.cardActionTag}>
+              <Text style={styles.cardActionTagText}>Try Model →</Text>
             </View>
-            <Text style={styles.featureTitle}>Speech to Sign</Text>
-            <Text style={styles.featureDesc}>
-              Voice to 3D avatar Sri Lankan sign playback
-            </Text>
           </TouchableOpacity>
 
-          {/* Card 3 */}
-          <TouchableOpacity style={styles.featureCard} activeOpacity={0.8}>
-            <View style={[styles.featureIconBox, { backgroundColor: 'rgba(255, 183, 3, 0.15)' }]}>
+          {/* Card 2: SSL Dictionary */}
+          <TouchableOpacity
+            style={styles.featureCard}
+            onPress={onOpenDictionary}
+            activeOpacity={0.8}
+          >
+            <View
+              style={[
+                styles.featureIconBox,
+                { backgroundColor: 'rgba(72, 202, 228, 0.15)' },
+              ]}
+            >
               <Text style={styles.featureIcon}>📚</Text>
             </View>
             <Text style={styles.featureTitle}>SSL Dictionary</Text>
             <Text style={styles.featureDesc}>
-              Over 2,500+ localized Sri Lankan signs
+              111 trained gestures with Sinhala & Tamil guides
             </Text>
-          </TouchableOpacity>
-
-          {/* Card 4 */}
-          <TouchableOpacity style={styles.featureCard} activeOpacity={0.8}>
-            <View style={[styles.featureIconBox, { backgroundColor: 'rgba(168, 85, 247, 0.15)' }]}>
-              <Text style={styles.featureIcon}>🎓</Text>
+            <View style={styles.cardActionTag}>
+              <Text style={styles.cardActionTagText}>Explore →</Text>
             </View>
-            <Text style={styles.featureTitle}>Learn & Practice</Text>
-            <Text style={styles.featureDesc}>
-              Interactive lessons with AI feedback
-            </Text>
           </TouchableOpacity>
         </View>
 
         {/* Quick Demo Preview Box */}
         <View style={styles.demoBox}>
           <View style={styles.demoHeader}>
-            <Text style={styles.demoTitle}>Quick SSL Gestures</Text>
-            <Text style={styles.demoStatus}>● Live</Text>
+            <Text style={styles.demoTitle}>Quick Model Recognition Tests</Text>
+            <Text style={styles.demoStatus}>● 111 Classes</Text>
           </View>
           <View style={styles.gestureRow}>
-            <View style={styles.gesturePill}>
-              <Text style={styles.gesturePillText}>🙏 ආයුබෝවන් (Hello)</Text>
-            </View>
-            <View style={styles.gesturePill}>
-              <Text style={styles.gesturePillText}>❤️ ස්තූතියි (Thank You)</Text>
-            </View>
-            <View style={styles.gesturePill}>
-              <Text style={styles.gesturePillText}>🤝 සහය (Help)</Text>
-            </View>
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('ssl_mata_asaniipai')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>🤒 මට අසනීපයි (Sick)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('ssl_doctor_koheda_inne')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>👨‍⚕️ දොස්තර කොහෙද?</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('verbs_bonawa')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>🥤 බොනවා (Drinking)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('additional_dakunata_harenna')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>↗️ දකුණට හැරෙන්න</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('verbs_adum_sodanawa')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>👕 ඇඳුම් සෝදනවා</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('months_january')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>📅 ජනවාරි (Jan)</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -210,17 +270,32 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(72, 202, 228, 0.25)',
     marginBottom: 24,
   },
+  heroBadgeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
   heroBadge: {
-    alignSelf: 'flex-start',
     backgroundColor: 'rgba(0, 201, 167, 0.2)',
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,
-    marginBottom: 12,
   },
   heroBadgeText: {
     color: '#00C9A7',
     fontSize: 12,
+    fontWeight: '700',
+  },
+  heroBadgeSecondary: {
+    backgroundColor: 'rgba(255, 183, 3, 0.2)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  heroBadgeSecondaryText: {
+    color: '#FFB703',
+    fontSize: 11,
     fontWeight: '700',
   },
   heroTitle: {
@@ -233,6 +308,18 @@ const styles = StyleSheet.create({
     color: '#94A3B8',
     fontSize: 13,
     lineHeight: 19,
+    marginBottom: 16,
+  },
+  heroCta: {
+    backgroundColor: '#00C9A7',
+    borderRadius: 14,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  heroCtaText: {
+    color: '#0B132B',
+    fontSize: 14,
+    fontWeight: '800',
   },
   sectionTitle: {
     color: '#FFFFFF',
@@ -250,32 +337,41 @@ const styles = StyleSheet.create({
     width: '48%',
     backgroundColor: '#1C2541',
     borderRadius: 16,
-    padding: 16,
+    padding: 14,
     marginBottom: 14,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.06)',
   },
   featureIconBox: {
-    width: 44,
-    height: 44,
+    width: 42,
+    height: 42,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 12,
+    marginBottom: 10,
   },
   featureIcon: {
-    fontSize: 22,
+    fontSize: 20,
   },
   featureTitle: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '700',
     marginBottom: 4,
   },
   featureDesc: {
     color: '#94A3B8',
     fontSize: 11,
-    lineHeight: 16,
+    lineHeight: 15,
+    marginBottom: 8,
+  },
+  cardActionTag: {
+    alignSelf: 'flex-start',
+  },
+  cardActionTagText: {
+    color: '#00C9A7',
+    fontSize: 11,
+    fontWeight: '700',
   },
   demoBox: {
     backgroundColor: '#16223B',
