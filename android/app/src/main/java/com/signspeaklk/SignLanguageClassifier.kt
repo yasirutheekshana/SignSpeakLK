@@ -68,7 +68,7 @@ class SignLanguageClassifier(private val context: Context) {
 
     fun classifyBitmap(bitmap: Bitmap, topK: Int = 3): List<RecognitionResult> {
         val currentInterpreter = interpreter ?: return emptyList()
-        val numClasses = if (labels.isNotEmpty()) labels.size else 111
+        val numClasses = if (labels.isNotEmpty()) labels.size else 26
 
         val resized = Bitmap.createScaledBitmap(bitmap, inputImageSize, inputImageSize, true)
         val byteBuffer = ByteBuffer.allocateDirect(1 * inputImageSize * inputImageSize * channels * pixelBytes)

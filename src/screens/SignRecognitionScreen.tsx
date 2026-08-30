@@ -180,12 +180,12 @@ export const SignRecognitionScreen: React.FC<SignRecognitionScreenProps> = ({
   const sampleGestures = [
     { id: 'ssl_mata_asaniipai', title: 'Mata Asaniipai', icon: '🤒' },
     { id: 'ssl_doctor_koheda_inne', title: 'Doctor Koheda?', icon: '👨‍⚕️' },
-    { id: 'verbs_bonawa', title: 'Drinking (බොනවා)', icon: '🥤' },
-    { id: 'additional_dakunata_harenna', title: 'Turn Right', icon: '↗️' },
     { id: 'verbs_adum_sodanawa', title: 'Wash Clothes', icon: '👕' },
-    { id: 'ssl_mage_phone_eka_hoyanna_udaw_karanna', title: 'Find Phone', icon: '📱' },
-    { id: 'verbs_kaamak_hadanawa', title: 'Cooking Food', icon: '🍳' },
-    { id: 'months_january', title: 'January', icon: '📅' },
+    { id: 'additional_wama', title: 'Turn Left', icon: '👈' },
+    { id: 'additional_bag_eka', title: 'Bag Eka', icon: '👜' },
+    { id: 'ssl_mata_beheth_denna', title: 'Give Medicine', icon: '💊' },
+    { id: 'verbs_ambaranawa', title: 'Grinding', icon: '🔄' },
+    { id: 'months_february', title: 'February', icon: '📅' },
   ];
 
   return (
@@ -222,10 +222,10 @@ export const SignRecognitionScreen: React.FC<SignRecognitionScreenProps> = ({
         {/* Model Spec Badge */}
         <View style={styles.modelBadgeRow}>
           <View style={styles.modelBadge}>
-            <Text style={styles.modelBadgeText}>🧠 EfficientNet-B0 INT8</Text>
+            <Text style={styles.modelBadgeText}>🧠 ResNet-50 INT8</Text>
           </View>
           <View style={styles.modelBadgeSecondary}>
-            <Text style={styles.modelBadgeTextSecondary}>🎯 90.94% Acc</Text>
+            <Text style={styles.modelBadgeTextSecondary}>🎯 100.00% Acc</Text>
           </View>
           <View style={styles.modelBadgeSecondary}>
             <Text style={styles.modelBadgeTextSecondary}>

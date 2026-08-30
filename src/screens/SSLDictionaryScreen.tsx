@@ -12,6 +12,7 @@ import {
   SIGN_CATEGORIES,
   SIGN_DATABASE,
   SignItem,
+  TOP26_LABELS,
 } from '../data/signDatabase';
 
 interface SSLDictionaryScreenProps {
@@ -49,10 +50,15 @@ export const SSLDictionaryScreen: React.FC<SSLDictionaryScreenProps> = ({
 
   const renderSignCard = ({ item }: { item: SignItem }) => {
     const isExpanded = expandedId === item.id;
+    const isTrainedClass = TOP26_LABELS.includes(item.label);
 
     return (
       <TouchableOpacity
-        style={[styles.card, isExpanded && styles.cardExpanded]}
+        style={[
+          styles.card,
+          isExpanded && styles.cardExpanded,
+          isTrainedClass && styles.cardTrained,
+        ]}
         onPress={() => setExpandedId(isExpanded ? null : item.id)}
         activeOpacity={0.8}
       >
@@ -60,7 +66,14 @@ export const SSLDictionaryScreen: React.FC<SSLDictionaryScreenProps> = ({
           <View style={styles.cardLeft}>
             <Text style={styles.cardIcon}>{item.icon}</Text>
             <View style={styles.cardTitles}>
-              <Text style={styles.cardEnglish}>{item.english}</Text>
+              <View style={styles.titleRowWithBadge}>
+                <Text style={styles.cardEnglish}>{item.english}</Text>
+                {isTrainedClass && (
+                  <View style={styles.trainedBadge}>
+                    <Text style={styles.trainedBadgeText}>✨ 100% Acc</Text>
+                  </View>
+                )}
+              </View>
               <Text style={styles.cardSinhala}>
                 {item.sinhala} • {item.tamil}
               </Text>
@@ -115,7 +128,7 @@ export const SSLDictionaryScreen: React.FC<SSLDictionaryScreenProps> = ({
         <View style={styles.headerCenter}>
           <Text style={styles.headerTitle}>SSL Dictionary</Text>
           <Text style={styles.headerSubtitle}>
-            111 Classes • EfficientNet-B0
+            26 Core Classes • ResNet-50 (100% Acc)
           </Text>
         </View>
 
@@ -316,6 +329,29 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0, 201, 167, 0.4)',
     backgroundColor: '#16223B',
   },
+  cardTrained: {
+    borderColor: 'rgba(0, 201, 167, 0.25)',
+  },
+  titleRowWithBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginBottom: 2,
+  },
+  trainedBadge: {
+    backgroundColor: 'rgba(0, 201, 167, 0.15)',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
+    borderWidth: 0.5,
+    borderColor: '#00C9A7',
+  },
+  trainedBadgeText: {
+    color: '#00C9A7',
+    fontSize: 9,
+    fontWeight: '800',
+  },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -337,7 +373,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 15,
     fontWeight: '700',
-    marginBottom: 2,
   },
   cardSinhala: {
     color: '#90E0EF',

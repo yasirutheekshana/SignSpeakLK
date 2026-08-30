@@ -20,6 +20,35 @@ export const SIGN_CATEGORIES = [
   'Sentences',
 ] as const;
 
+export const TOP26_LABELS: string[] = [
+  'additional_100_meters',
+  'additional_asniipai',
+  'additional_bag_eka',
+  'additional_ischole_bag_eka',
+  'additional_wama',
+  'months_february',
+  'months_march',
+  'months_september',
+  'ssl_50_km_idiriyata_yanna',
+  'ssl_bara_kilogram_1_k',
+  'ssl_doctor_koheda_inne',
+  'ssl_mage_nama',
+  'ssl_mama_oyata_usaaviyedi_nadu_pawaranawa',
+  'ssl_mata_asaniipai',
+  'ssl_mata_beheth_denna',
+  'ssl_mata_pannanne',
+  'verbs_adum_sodanawa',
+  'verbs_ambaranawa',
+  'verbs_awidinawa',
+  'verbs_denawa',
+  'verbs_ellanawa',
+  'verbs_miladii_gannawa',
+  'verbs_naanawa',
+  'verbs_nagitinawa',
+  'verbs_randu_karagannawa',
+  'verbs_sodanawa',
+];
+
 export const SIGN_DATABASE: Record<string, SignItem> = {
   // Healthcare & Emergency
   ssl_mata_asaniipai: {

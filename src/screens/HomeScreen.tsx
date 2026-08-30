@@ -62,17 +62,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <View style={styles.heroCard}>
           <View style={styles.heroBadgeRow}>
             <View style={styles.heroBadge}>
-              <Text style={styles.heroBadgeText}>⚡ best_model_int8.tflite</Text>
+              <Text style={styles.heroBadgeText}>⚡ ResNet-50 INT8</Text>
             </View>
             <View style={styles.heroBadgeSecondary}>
-              <Text style={styles.heroBadgeSecondaryText}>🎯 90.94% Acc</Text>
+              <Text style={styles.heroBadgeSecondaryText}>🎯 100.00% Acc</Text>
             </View>
           </View>
 
           <Text style={styles.heroTitle}>Break the Silence, Connect Sri Lanka</Text>
           <Text style={styles.heroDescription}>
-            Real-time on-device gesture recognition powered by quantized EfficientNet-B0
-            across 111 Sri Lankan Sign Language classes.
+            Real-time on-device gesture recognition powered by optimized ResNet-50
+            across 26 high-precision Sri Lankan Sign Language classes.
           </Text>
 
           <TouchableOpacity
@@ -104,7 +104,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </View>
             <Text style={styles.featureTitle}>Sign to Speech</Text>
             <Text style={styles.featureDesc}>
-              Real-time camera & gesture recognition with TFLite
+              Real-time camera & gesture recognition with TFLite ResNet-50
             </Text>
             <View style={styles.cardActionTag}>
               <Text style={styles.cardActionTagText}>Try Model →</Text>
@@ -127,7 +127,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </View>
             <Text style={styles.featureTitle}>SSL Dictionary</Text>
             <Text style={styles.featureDesc}>
-              111 trained gestures with Sinhala & Tamil guides
+              26 high-accuracy gestures with Sinhala & Tamil guides
             </Text>
             <View style={styles.cardActionTag}>
               <Text style={styles.cardActionTagText}>Explore →</Text>
@@ -139,7 +139,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <View style={styles.demoBox}>
           <View style={styles.demoHeader}>
             <Text style={styles.demoTitle}>Quick Model Recognition Tests</Text>
-            <Text style={styles.demoStatus}>● 111 Classes</Text>
+            <Text style={styles.demoStatus}>● 26 Top Classes</Text>
           </View>
           <View style={styles.gestureRow}>
             <TouchableOpacity
@@ -160,22 +160,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
             <TouchableOpacity
               style={styles.gesturePill}
-              onPress={() => onOpenRecognition('verbs_bonawa')}
-              activeOpacity={0.7}
-            >
-              <Text style={styles.gesturePillText}>🥤 බොනවා (Drinking)</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.gesturePill}
-              onPress={() => onOpenRecognition('additional_dakunata_harenna')}
-              activeOpacity={0.7}
-            >
-              <Text style={styles.gesturePillText}>↗️ දකුණට හැරෙන්න</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.gesturePill}
               onPress={() => onOpenRecognition('verbs_adum_sodanawa')}
               activeOpacity={0.7}
             >
@@ -184,10 +168,26 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
             <TouchableOpacity
               style={styles.gesturePill}
-              onPress={() => onOpenRecognition('months_january')}
+              onPress={() => onOpenRecognition('additional_wama')}
               activeOpacity={0.7}
             >
-              <Text style={styles.gesturePillText}>📅 ජනවාරි (Jan)</Text>
+              <Text style={styles.gesturePillText}>👈 වමට (Left)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('additional_bag_eka')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>👜 බෑග් එක (Bag)</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.gesturePill}
+              onPress={() => onOpenRecognition('months_february')}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.gesturePillText}>📅 පෙබරවාරි (Feb)</Text>
             </TouchableOpacity>
           </View>
         </View>

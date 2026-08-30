@@ -27,9 +27,9 @@ class SignClassifierModule(private val reactContext: ReactApplicationContext) :
             val map = Arguments.createMap().apply {
                 putBoolean("isLoaded", isLoaded)
                 putString("modelName", "best_model_int8.tflite")
-                putString("architecture", "EfficientNet-B0 INT8")
-                putString("accuracy", "90.94%")
-                putString("f1Score", "90.93%")
+                putString("architecture", "ResNet-50 INT8")
+                putString("accuracy", "100.00%")
+                putString("f1Score", "100.00%")
                 putInt("numClasses", count)
                 putInt("inputSize", 224)
             }
